@@ -59,6 +59,10 @@ import org.openhab.core.persistence.PersistenceItemInfo;
 import org.openhab.core.persistence.PersistenceService;
 import org.openhab.core.persistence.QueryablePersistenceService;
 import org.osgi.framework.BundleContext;
+import org.osgi.service.component.annotations.Activate;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Deactivate;
+import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -76,8 +80,9 @@ import retrofit.RetrofitError;
  *
  * @author Theo Weiss - Initial Contribution, rewrite of org.openhab.persistence.influxdb > 0.9
  *         support
- * @since 1.8.0
+ * @author Kai Kreuzer - Migration to 2.x
  */
+@Component
 public class InfluxDBPersistenceService implements QueryablePersistenceService {
 
     private static final String DEFAULT_URL = "http://127.0.0.1:8086";
@@ -100,6 +105,7 @@ public class InfluxDBPersistenceService implements QueryablePersistenceService {
     private boolean isProperlyConfigured;
     private boolean connected;
 
+    @Reference
     public void setItemRegistry(ItemRegistry itemRegistry) {
         this.itemRegistry = itemRegistry;
     }
@@ -108,6 +114,7 @@ public class InfluxDBPersistenceService implements QueryablePersistenceService {
         this.itemRegistry = null;
     }
 
+    @Activate
     public void activate(final BundleContext bundleContext, final Map<String, Object> config) {
         logger.debug("influxdb persistence service activated");
         disconnect();
@@ -152,6 +159,7 @@ public class InfluxDBPersistenceService implements QueryablePersistenceService {
         }
     }
 
+    @Deactivate
     public void deactivate() {
         logger.debug("influxdb persistence service deactivated");
         disconnect();

@@ -985,12 +985,14 @@
   <feature name="openhab-persistence-mysql" description="MySQL Persistence" version="${project.version}">
     <feature>openhab-runtime-base</feature>
     <bundle start-level="80">mvn:org.openhab.persistence/org.openhab.persistence.mysql/${project.version}</bundle>
+    <bundle start-level="80">mvn:mysql/mysql-connector-java/8.0.13</bundle>
     <configfile finalname="${openhab.conf}/services/mysql.cfg" override="false">mvn:${project.groupId}/openhab-addons-external/${project.version}/cfg/mysql</configfile>
   </feature>
 
   <feature name="openhab-persistence-rrd4j" description="RRD4j Persistence" version="${project.version}">
     <feature>openhab-runtime-base</feature>
     <bundle start-level="80">mvn:org.openhab.persistence/org.openhab.persistence.rrd4j/${project.version}</bundle>
+    <bundle start-level="80">mvn:org.rrd4j/rrd4j/3.3.1</bundle>
     <configfile finalname="${openhab.conf}/services/rrd4j.cfg" override="false">mvn:${project.groupId}/openhab-addons-external/${project.version}/cfg/rrd4j</configfile>
   </feature>
 

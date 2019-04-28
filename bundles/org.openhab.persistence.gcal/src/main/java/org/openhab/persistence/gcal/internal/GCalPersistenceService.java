@@ -22,6 +22,9 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 import org.apache.commons.lang.StringUtils;
+import org.eclipse.jetty.server.HttpTransport;
+import org.eclipse.jetty.util.security.Credential;
+import org.joda.time.DateTime;
 import org.openhab.core.items.Item;
 import org.openhab.core.persistence.PersistenceService;
 import org.openhab.io.gcal.auth.GCalGoogleOAuth;
@@ -39,23 +42,17 @@ import org.quartz.impl.StdSchedulerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.google.api.client.auth.oauth2.Credential;
-import com.google.api.client.http.HttpTransport;
 import com.google.api.client.http.javanet.NetHttpTransport;
-import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
-import com.google.api.client.util.DateTime;
-import com.google.api.services.calendar.Calendar;
 import com.google.api.services.calendar.model.CalendarListEntry;
-import com.google.api.services.calendar.model.Event;
 import com.google.api.services.calendar.model.EventDateTime;
 
 /**
  * This implementation of the {@link PersistenceService} provides Presence
  * Simulation features based on the Google Calendar Service.
  *
- * @author Thomas.Eichstaedt-Engelen
- * @since 1.0.0
+ * @author Thomas.Eichstaedt-Engelen - Initial contribution
+ * @author Kai Kreuzer - Migration to 2.x
  */
 public class GCalPersistenceService implements PersistenceService {
 

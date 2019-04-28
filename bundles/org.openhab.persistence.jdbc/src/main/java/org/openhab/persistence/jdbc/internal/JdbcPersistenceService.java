@@ -28,13 +28,19 @@ import org.openhab.core.persistence.PersistenceItemInfo;
 import org.openhab.core.persistence.PersistenceService;
 import org.openhab.core.persistence.QueryablePersistenceService;
 import org.osgi.framework.BundleContext;
+import org.osgi.service.component.annotations.Activate;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Deactivate;
+import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * @author Helmut Lehmeyer
+ * @author Helmut Lehmeyer - Initial contribution
+ * @author Kai Kreuzer - Migration to 2.x
  *
  */
+@Component
 public class JdbcPersistenceService extends JdbcMapper implements QueryablePersistenceService {
     static final Logger logger = LoggerFactory.getLogger(JdbcPersistenceService.class);
 
@@ -58,6 +64,7 @@ public class JdbcPersistenceService extends JdbcMapper implements QueryablePersi
      *            Configuration properties for this component obtained from the
      *            ConfigAdmin service
      */
+    @Activate
     public void activate(BundleContext bundleContext, Map<Object, Object> configuration) {
         logger.debug("JDBC::activate: persistence service activated");
         this.bundleContext = bundleContext;
@@ -81,6 +88,7 @@ public class JdbcPersistenceService extends JdbcMapper implements QueryablePersi
      *            <li>6 – The bundle was stopped
      *            </ul>
      */
+    @Deactivate
     public void deactivate(final int reason) {
         logger.debug("JDBC::deactivate:  persistence bundle stopping. Disconnecting from database. reason={}", reason);
         // closeConnection();
@@ -88,6 +96,7 @@ public class JdbcPersistenceService extends JdbcMapper implements QueryablePersi
         initialized = false;
     }
 
+    @Reference
     public void setItemRegistry(ItemRegistry itemRegistry) {
         logger.debug("JDBC::setItemRegistry");
         this.itemRegistry = itemRegistry;
