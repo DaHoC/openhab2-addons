@@ -991,16 +991,6 @@
     <configfile finalname="${openhab.conf}/services/mapdb.cfg" override="false">mvn:${project.groupId}/openhab-addons-external/${project.version}/cfg/mapdb</configfile>
   </feature>
 
-<!--
-  <feature name="openhab-persistence-mqtt" description="MQTT Persistence" version="${project.version}">
-    <feature>openhab-runtime-base</feature>
-    <bundle start-level="80">mvn:org.openhab.io/org.openhab.io.transport.mqtt/${project.version}</bundle>
-    <bundle start-level="80">mvn:org.openhab.persistence/org.openhab.persistence.mqtt/${project.version}</bundle>
-    <configfile finalname="${openhab.conf}/services/mqtt.cfg" override="false">mvn:${project.groupId}/openhab-addons-external/${project.version}/cfg/mqtt</configfile>
-    <configfile finalname="${openhab.conf}/services/mqtt-persistence.cfg" override="false">mvn:${project.groupId}/openhab-addons-external/${project.version}/cfg/mqtt-persistence</configfile>
-  </feature>
--->
-
   <feature name="openhab-persistence-mysql" description="MySQL Persistence" version="${project.version}">
     <feature>openhab-runtime-base</feature>
     <bundle start-level="80">mvn:org.openhab.persistence/org.openhab.persistence.mysql/${project.version}</bundle>
