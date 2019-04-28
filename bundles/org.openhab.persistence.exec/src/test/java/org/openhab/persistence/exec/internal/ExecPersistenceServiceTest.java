@@ -21,13 +21,13 @@ import junit.framework.Assert;
  * @author Thomas.Eichstaedt-Engelen
  * @since 1.1.0
  */
-public class ExecServiceTest {
+public class ExecPersistenceServiceTest {
 
-    ExecService service;
+    ExecPersistenceService service;
 
     @Before
     public void init() {
-        service = new ExecService();
+        service = new ExecPersistenceService();
     }
 
     @Test

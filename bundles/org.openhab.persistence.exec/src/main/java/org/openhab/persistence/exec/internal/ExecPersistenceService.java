@@ -16,19 +16,21 @@ import java.util.Locale;
 
 import org.eclipse.smarthome.core.items.Item;
 import org.openhab.core.persistence.PersistenceService;
+import org.osgi.service.component.annotations.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
  * This is the implementation of the Exec {@link PersistenceService}.
  *
- * @author Henrik Sjöstrand
- * @author Thomas.Eichstaedt-Engelen
- * @since 1.1.0
+ * @author Henrik Sjöstrand - Initial contribution
+ * @author Thomas.Eichstaedt-Engelen - Initial contribution
+ * @author Kai Kreuzer - Migration to 2.x
  */
-public class ExecService implements PersistenceService {
+@Component
+public class ExecPersistenceService implements PersistenceService {
 
-    private static final Logger logger = LoggerFactory.getLogger(ExecService.class);
+    private static final Logger logger = LoggerFactory.getLogger(ExecPersistenceService.class);
 
     @Override
     public String getId() {
@@ -89,9 +91,6 @@ public class ExecService implements PersistenceService {
         }
     }
 
-    /**
-     * @{inheritDoc
-     */
     @Override
     public void store(Item item) {
         throw new UnsupportedOperationException(
