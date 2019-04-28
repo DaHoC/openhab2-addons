@@ -13,10 +13,10 @@ import static org.junit.Assert.assertTrue;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import org.eclipse.smarthome.core.library.items.NumberItem;
+import org.eclipse.smarthome.core.library.types.DecimalType;
+import org.eclipse.smarthome.core.types.State;
 import org.junit.BeforeClass;
-import org.openhab.core.library.items.NumberItem;
-import org.openhab.core.library.types.DecimalType;
-import org.openhab.core.types.State;
 
 /**
  *

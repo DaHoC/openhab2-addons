@@ -12,10 +12,10 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 
+import org.eclipse.smarthome.core.library.items.DateTimeItem;
+import org.eclipse.smarthome.core.library.types.DateTimeType;
+import org.eclipse.smarthome.core.types.State;
 import org.junit.BeforeClass;
-import org.openhab.core.library.items.DateTimeItem;
-import org.openhab.core.library.types.DateTimeType;
-import org.openhab.core.types.State;
 
 /**
  *

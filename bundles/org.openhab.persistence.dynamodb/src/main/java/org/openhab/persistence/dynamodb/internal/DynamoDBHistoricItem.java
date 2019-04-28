@@ -11,8 +11,8 @@ package org.openhab.persistence.dynamodb.internal;
 import java.text.DateFormat;
 import java.util.Date;
 
+import org.eclipse.smarthome.core.types.State;
 import org.openhab.core.persistence.HistoricItem;
-import org.openhab.core.types.State;
 
 /**
  * This is a Java bean used to return historic items from Dynamodb.

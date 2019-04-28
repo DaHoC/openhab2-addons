@@ -17,30 +17,31 @@ import java.util.Date;
 import java.util.TimeZone;
 
 import org.apache.commons.lang.StringUtils;
+import org.eclipse.smarthome.core.items.Item;
+import org.eclipse.smarthome.core.library.items.CallItem;
+import org.eclipse.smarthome.core.library.items.ColorItem;
+import org.eclipse.smarthome.core.library.items.ContactItem;
+import org.eclipse.smarthome.core.library.items.DateTimeItem;
+import org.eclipse.smarthome.core.library.items.DimmerItem;
+import org.eclipse.smarthome.core.library.items.LocationItem;
+import org.eclipse.smarthome.core.library.items.NumberItem;
+import org.eclipse.smarthome.core.library.items.RollershutterItem;
+import org.eclipse.smarthome.core.library.items.StringItem;
+import org.eclipse.smarthome.core.library.items.SwitchItem;
+import org.eclipse.smarthome.core.library.types.DateTimeType;
+import org.eclipse.smarthome.core.library.types.DecimalType;
+import org.eclipse.smarthome.core.library.types.HSBType;
+import org.eclipse.smarthome.core.library.types.OnOffType;
+import org.eclipse.smarthome.core.library.types.OpenClosedType;
+import org.eclipse.smarthome.core.library.types.PercentType;
+import org.eclipse.smarthome.core.library.types.PointType;
+import org.eclipse.smarthome.core.library.types.StringListType;
+import org.eclipse.smarthome.core.library.types.StringType;
+import org.eclipse.smarthome.core.library.types.UpDownType;
+import org.eclipse.smarthome.core.types.State;
+import org.eclipse.smarthome.core.types.UnDefType;
 import org.junit.Test;
-import org.openhab.core.items.Item;
-import org.openhab.core.library.items.ColorItem;
-import org.openhab.core.library.items.ContactItem;
-import org.openhab.core.library.items.DateTimeItem;
-import org.openhab.core.library.items.DimmerItem;
-import org.openhab.core.library.items.LocationItem;
-import org.openhab.core.library.items.NumberItem;
-import org.openhab.core.library.items.RollershutterItem;
-import org.openhab.core.library.items.StringItem;
-import org.openhab.core.library.items.SwitchItem;
-import org.openhab.core.library.types.DateTimeType;
-import org.openhab.core.library.types.DecimalType;
-import org.openhab.core.library.types.HSBType;
-import org.openhab.core.library.types.OnOffType;
-import org.openhab.core.library.types.OpenClosedType;
-import org.openhab.core.library.types.PercentType;
-import org.openhab.core.library.types.PointType;
-import org.openhab.core.library.types.StringType;
-import org.openhab.core.library.types.UpDownType;
 import org.openhab.core.persistence.HistoricItem;
-import org.openhab.core.types.State;
-import org.openhab.core.types.UnDefType;
-import org.openhab.library.tel.items.CallItem;
 import org.openhab.library.tel.types.CallType;
 
 /**
@@ -56,7 +57,7 @@ public class AbstractDynamoDBItemSerializationTest {
      * Generic function testing serialization of item state to internal format in DB. In other words, conversion of
      * Item with state to DynamoDBItem
      *
-     * @param state         item state
+     * @param state item state
      * @param expectedState internal format in DB representing the item state
      * @return dynamo db item
      * @throws IOException
@@ -82,8 +83,8 @@ public class AbstractDynamoDBItemSerializationTest {
     /**
      * Test state deserialization, that is DynamoDBItem conversion to HistoricItem
      *
-     * @param dbItem        dynamo db item
-     * @param item          parameter for DynamoDBItem.asHistoricItem
+     * @param dbItem dynamo db item
+     * @param item parameter for DynamoDBItem.asHistoricItem
      * @param expectedState Expected state of the historic item. DecimalTypes are compared with reduced accuracy
      * @return
      * @throws IOException
@@ -120,8 +121,8 @@ public class AbstractDynamoDBItemSerializationTest {
 
     @Test
     public void testCallTypeWithCallItem() throws IOException {
-        final DynamoDBItem<?> dbitem = testStateGeneric(new CallType("origNum", "destNum"), "destNum##origNum");
-        testAsHistoricGeneric(dbitem, new CallItem("foo"), new CallType("origNum", "destNum"));
+        final DynamoDBItem<?> dbitem = testStateGeneric(new StringListType("origNum", "destNum"), "destNum##origNum");
+        testAsHistoricGeneric(dbitem, new CallItem("foo"), new StringListType("origNum", "destNum"));
 
     }
 

@@ -18,29 +18,30 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.TimeZone;
 
-import org.openhab.core.items.Item;
-import org.openhab.core.library.items.ColorItem;
-import org.openhab.core.library.items.ContactItem;
-import org.openhab.core.library.items.DateTimeItem;
-import org.openhab.core.library.items.DimmerItem;
-import org.openhab.core.library.items.LocationItem;
-import org.openhab.core.library.items.NumberItem;
-import org.openhab.core.library.items.RollershutterItem;
-import org.openhab.core.library.items.StringItem;
-import org.openhab.core.library.items.SwitchItem;
-import org.openhab.core.library.types.DateTimeType;
-import org.openhab.core.library.types.DecimalType;
-import org.openhab.core.library.types.HSBType;
-import org.openhab.core.library.types.OnOffType;
-import org.openhab.core.library.types.OpenClosedType;
-import org.openhab.core.library.types.PercentType;
-import org.openhab.core.library.types.PointType;
-import org.openhab.core.library.types.StringType;
-import org.openhab.core.library.types.UpDownType;
+import org.eclipse.smarthome.core.items.Item;
+import org.eclipse.smarthome.core.library.items.CallItem;
+import org.eclipse.smarthome.core.library.items.ColorItem;
+import org.eclipse.smarthome.core.library.items.ContactItem;
+import org.eclipse.smarthome.core.library.items.DateTimeItem;
+import org.eclipse.smarthome.core.library.items.DimmerItem;
+import org.eclipse.smarthome.core.library.items.LocationItem;
+import org.eclipse.smarthome.core.library.items.NumberItem;
+import org.eclipse.smarthome.core.library.items.RollershutterItem;
+import org.eclipse.smarthome.core.library.items.StringItem;
+import org.eclipse.smarthome.core.library.items.SwitchItem;
+import org.eclipse.smarthome.core.library.types.DateTimeType;
+import org.eclipse.smarthome.core.library.types.DecimalType;
+import org.eclipse.smarthome.core.library.types.HSBType;
+import org.eclipse.smarthome.core.library.types.OnOffType;
+import org.eclipse.smarthome.core.library.types.OpenClosedType;
+import org.eclipse.smarthome.core.library.types.PercentType;
+import org.eclipse.smarthome.core.library.types.PointType;
+import org.eclipse.smarthome.core.library.types.StringListType;
+import org.eclipse.smarthome.core.library.types.StringType;
+import org.eclipse.smarthome.core.library.types.UpDownType;
+import org.eclipse.smarthome.core.types.State;
+import org.eclipse.smarthome.core.types.UnDefType;
 import org.openhab.core.persistence.HistoricItem;
-import org.openhab.core.types.State;
-import org.openhab.core.types.UnDefType;
-import org.openhab.library.tel.items.CallItem;
 import org.openhab.library.tel.types.CallType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -126,11 +127,6 @@ public abstract class AbstractDynamoDBItem<T> implements DynamoDBItem<T> {
         }
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see org.openhab.persistence.dynamodb.internal.DynamoItem#asHistoricItem(org.openhab.core.items.Item)
-     */
     @Override
     public HistoricItem asHistoricItem(final Item item) {
         final State[] state = new State[1];
@@ -159,7 +155,7 @@ public abstract class AbstractDynamoDBItem<T> implements DynamoDBItem<T> {
                     String[] strings = parts.split("##");
                     String dest = strings[0];
                     String orig = strings[1];
-                    state[0] = new CallType(orig, dest);
+                    state[0] = new StringListType(orig, dest);
                 } else {
                     state[0] = new StringType(dynamoStringItem.getState());
                 }

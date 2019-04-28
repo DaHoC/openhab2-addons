@@ -15,8 +15,10 @@ import java.util.Date;
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
@@ -25,15 +27,21 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Function;
 
-import org.openhab.core.items.Item;
-import org.openhab.core.items.ItemNotFoundException;
-import org.openhab.core.items.ItemRegistry;
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.smarthome.core.items.Item;
+import org.eclipse.smarthome.core.items.ItemNotFoundException;
+import org.eclipse.smarthome.core.items.ItemRegistry;
+import org.eclipse.smarthome.core.types.State;
 import org.openhab.core.persistence.FilterCriteria;
 import org.openhab.core.persistence.HistoricItem;
+import org.openhab.core.persistence.PersistenceItemInfo;
 import org.openhab.core.persistence.PersistenceService;
 import org.openhab.core.persistence.QueryablePersistenceService;
-import org.openhab.core.types.State;
 import org.osgi.framework.BundleContext;
+import org.osgi.service.component.annotations.Activate;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Deactivate;
+import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -63,9 +71,11 @@ import com.amazonaws.services.dynamodbv2.model.WriteRequest;
  *
  * @see AbstractDynamoDBItem.fromState for details how different items are persisted
  *
- * @author Sami Salonen
+ * @author Sami Salonen - Initial contribution
+ * @author Kai Kreuzer - Migration to 2.x
  *
  */
+@Component
 public class DynamoDBPersistenceService extends AbstractBufferedPersistenceService<DynamoDBItem<?>>
         implements QueryablePersistenceService {
 
@@ -159,6 +169,7 @@ public class DynamoDBPersistenceService extends AbstractBufferedPersistenceServi
         return db;
     }
 
+    @Reference
     public void setItemRegistry(ItemRegistry itemRegistry) {
         this.itemRegistry = itemRegistry;
     }
@@ -167,6 +178,7 @@ public class DynamoDBPersistenceService extends AbstractBufferedPersistenceServi
         this.itemRegistry = null;
     }
 
+    @Activate
     public void activate(final BundleContext bundleContext, final Map<String, Object> config) {
         resetClient();
         dbConfig = DynamoDBConfig.fromConfig(config);
@@ -202,6 +214,7 @@ public class DynamoDBPersistenceService extends AbstractBufferedPersistenceServi
         logger.debug("dynamodb persistence service activated");
     }
 
+    @Deactivate
     public void deactivate() {
         logger.debug("dynamodb persistence service deactivated");
         if (writeBufferedDataFuture != null) {
@@ -342,8 +355,18 @@ public class DynamoDBPersistenceService extends AbstractBufferedPersistenceServi
     }
 
     @Override
-    public String getName() {
+    public String getId() {
         return "dynamodb";
+    }
+
+    @Override
+    public String getLabel(Locale locale) {
+        return "DynamoDB";
+    }
+
+    @Override
+    public @NonNull Set<@NonNull PersistenceItemInfo> getItemInfo() {
+        return Collections.emptySet();
     }
 
     @Override

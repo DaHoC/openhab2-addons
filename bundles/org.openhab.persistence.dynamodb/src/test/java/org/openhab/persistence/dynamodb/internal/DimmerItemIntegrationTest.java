@@ -10,10 +10,10 @@ package org.openhab.persistence.dynamodb.internal;
 
 import java.util.Date;
 
+import org.eclipse.smarthome.core.library.items.DimmerItem;
+import org.eclipse.smarthome.core.library.types.PercentType;
+import org.eclipse.smarthome.core.types.State;
 import org.junit.BeforeClass;
-import org.openhab.core.library.items.DimmerItem;
-import org.openhab.core.library.types.PercentType;
-import org.openhab.core.types.State;
 
 /**
  *

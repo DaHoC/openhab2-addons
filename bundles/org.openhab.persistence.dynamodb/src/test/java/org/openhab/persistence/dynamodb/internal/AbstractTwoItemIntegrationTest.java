@@ -13,6 +13,7 @@ import static org.junit.Assert.*;
 import java.util.Date;
 import java.util.Iterator;
 
+import org.eclipse.smarthome.core.types.State;
 import org.junit.Assume;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -20,7 +21,6 @@ import org.openhab.core.persistence.FilterCriteria;
 import org.openhab.core.persistence.FilterCriteria.Operator;
 import org.openhab.core.persistence.FilterCriteria.Ordering;
 import org.openhab.core.persistence.HistoricItem;
-import org.openhab.core.types.State;
 
 /**
  * This is abstract class helping with integration testing the persistence service. Different kind of queries are tested

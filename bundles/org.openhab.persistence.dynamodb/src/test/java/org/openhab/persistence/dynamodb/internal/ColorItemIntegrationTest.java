@@ -11,15 +11,15 @@ package org.openhab.persistence.dynamodb.internal;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import org.eclipse.smarthome.core.library.items.ColorItem;
+import org.eclipse.smarthome.core.library.types.DecimalType;
+import org.eclipse.smarthome.core.library.types.HSBType;
+import org.eclipse.smarthome.core.library.types.PercentType;
+import org.eclipse.smarthome.core.types.State;
 import org.junit.BeforeClass;
-import org.openhab.core.library.items.ColorItem;
-import org.openhab.core.library.types.DecimalType;
-import org.openhab.core.library.types.HSBType;
-import org.openhab.core.library.types.PercentType;
-import org.openhab.core.types.State;
 
 /**
- * 
+ *
  * @author Sami Salonen
  *
  */

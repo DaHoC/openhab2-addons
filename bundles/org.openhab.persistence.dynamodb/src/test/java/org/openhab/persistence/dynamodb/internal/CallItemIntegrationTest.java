@@ -12,13 +12,13 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.Date;
 
+import org.eclipse.smarthome.core.library.items.CallItem;
+import org.eclipse.smarthome.core.library.types.StringListType;
+import org.eclipse.smarthome.core.types.State;
 import org.junit.BeforeClass;
-import org.openhab.core.types.State;
-import org.openhab.library.tel.items.CallItem;
-import org.openhab.library.tel.types.CallType;
 
 /**
- * 
+ *
  * @author Sami Salonen
  *
  */
@@ -26,9 +26,9 @@ public class CallItemIntegrationTest extends AbstractTwoItemIntegrationTest {
 
     private static final String name = "call";
     // values are encoded as dest##orig, ordering goes wrt strings
-    private static final CallType state1 = new CallType("orig1", "dest1");
-    private static final CallType state2 = new CallType("orig1", "dest3");
-    private static final CallType stateBetween = new CallType("orig2", "dest2");
+    private static final StringListType state1 = new StringListType("orig1", "dest1");
+    private static final StringListType state2 = new StringListType("orig1", "dest3");
+    private static final StringListType stateBetween = new StringListType("orig2", "dest2");
 
     @BeforeClass
     public static void storeData() throws InterruptedException {

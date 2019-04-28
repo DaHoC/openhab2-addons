@@ -6,10 +6,11 @@ import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.TimeUnit;
 
-import org.openhab.core.items.Item;
+import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.smarthome.core.items.Item;
+import org.eclipse.smarthome.core.types.State;
+import org.eclipse.smarthome.core.types.UnDefType;
 import org.openhab.core.persistence.PersistenceService;
-import org.openhab.core.types.State;
-import org.openhab.core.types.UnDefType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -40,7 +41,7 @@ public abstract class AbstractBufferedPersistenceService<T> implements Persisten
     }
 
     @Override
-    public void store(Item item, String alias) {
+    public void store(Item item, @Nullable String alias) {
         long storeStart = System.currentTimeMillis();
         String uuid = UUID.randomUUID().toString();
         if (item.getState() instanceof UnDefType) {

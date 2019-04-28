@@ -10,10 +10,10 @@ package org.openhab.persistence.dynamodb.internal;
 
 import java.util.Date;
 
+import org.eclipse.smarthome.core.library.items.StringItem;
+import org.eclipse.smarthome.core.library.types.StringType;
+import org.eclipse.smarthome.core.types.State;
 import org.junit.BeforeClass;
-import org.openhab.core.library.items.StringItem;
-import org.openhab.core.library.types.StringType;
-import org.openhab.core.types.State;
 
 /**
  *

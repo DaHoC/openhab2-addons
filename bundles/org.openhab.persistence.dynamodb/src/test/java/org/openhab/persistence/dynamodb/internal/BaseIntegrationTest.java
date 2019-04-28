@@ -12,24 +12,28 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.stream.Stream;
 
 import org.apache.commons.lang.NotImplementedException;
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.smarthome.core.common.registry.RegistryChangeListener;
+import org.eclipse.smarthome.core.items.Item;
+import org.eclipse.smarthome.core.items.ItemNotFoundException;
+import org.eclipse.smarthome.core.items.ItemNotUniqueException;
+import org.eclipse.smarthome.core.items.ItemRegistry;
+import org.eclipse.smarthome.core.items.RegistryHook;
+import org.eclipse.smarthome.core.library.items.CallItem;
+import org.eclipse.smarthome.core.library.items.ColorItem;
+import org.eclipse.smarthome.core.library.items.ContactItem;
+import org.eclipse.smarthome.core.library.items.DateTimeItem;
+import org.eclipse.smarthome.core.library.items.DimmerItem;
+import org.eclipse.smarthome.core.library.items.LocationItem;
+import org.eclipse.smarthome.core.library.items.NumberItem;
+import org.eclipse.smarthome.core.library.items.RollershutterItem;
+import org.eclipse.smarthome.core.library.items.StringItem;
+import org.eclipse.smarthome.core.library.items.SwitchItem;
 import org.junit.BeforeClass;
-import org.openhab.core.items.Item;
-import org.openhab.core.items.ItemNotFoundException;
-import org.openhab.core.items.ItemNotUniqueException;
-import org.openhab.core.items.ItemRegistry;
-import org.openhab.core.items.ItemRegistryChangeListener;
-import org.openhab.core.library.items.ColorItem;
-import org.openhab.core.library.items.ContactItem;
-import org.openhab.core.library.items.DateTimeItem;
-import org.openhab.core.library.items.DimmerItem;
-import org.openhab.core.library.items.LocationItem;
-import org.openhab.core.library.items.NumberItem;
-import org.openhab.core.library.items.RollershutterItem;
-import org.openhab.core.library.items.StringItem;
-import org.openhab.core.library.items.SwitchItem;
-import org.openhab.library.tel.items.CallItem;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -66,17 +70,6 @@ public class BaseIntegrationTest {
         service.setItemRegistry(new ItemRegistry() {
 
             @Override
-            public void removeItemRegistryChangeListener(ItemRegistryChangeListener listener) {
-                throw new NotImplementedException();
-
-            }
-
-            @Override
-            public boolean isValidItemName(String itemName) {
-                throw new NotImplementedException();
-            }
-
-            @Override
             public Collection<Item> getItems(String pattern) {
                 throw new NotImplementedException();
             }
@@ -101,7 +94,78 @@ public class BaseIntegrationTest {
             }
 
             @Override
-            public void addItemRegistryChangeListener(ItemRegistryChangeListener listener) {
+            public void addRegistryChangeListener(@NonNull RegistryChangeListener<Item> listener) {
+                throw new NotImplementedException();
+            }
+
+            @Override
+            public @NonNull Collection<@NonNull Item> getAll() {
+                throw new NotImplementedException();
+            }
+
+            @Override
+            public Stream<Item> stream() {
+                throw new NotImplementedException();
+            }
+
+            @Override
+            public @Nullable Item get(String key) {
+                throw new NotImplementedException();
+            }
+
+            @Override
+            public void removeRegistryChangeListener(@NonNull RegistryChangeListener<Item> listener) {
+                throw new NotImplementedException();
+            }
+
+            @Override
+            public @NonNull Item add(@NonNull Item element) {
+                throw new NotImplementedException();
+            }
+
+            @Override
+            public @Nullable Item update(@NonNull Item element) {
+                throw new NotImplementedException();
+            }
+
+            @Override
+            public @Nullable Item remove(@NonNull String key) {
+                throw new NotImplementedException();
+            }
+
+            @Override
+            public @NonNull Collection<Item> getItemsOfType(@NonNull String type) {
+                throw new NotImplementedException();
+            }
+
+            @Override
+            public @NonNull Collection<Item> getItemsByTag(@NonNull String... tags) {
+                throw new NotImplementedException();
+            }
+
+            @Override
+            public @NonNull Collection<Item> getItemsByTagAndType(@NonNull String type, @NonNull String... tags) {
+                throw new NotImplementedException();
+            }
+
+            @Override
+            public <T extends Item> @NonNull Collection<T> getItemsByTag(@NonNull Class<T> typeFilter,
+                    @NonNull String... tags) {
+                throw new NotImplementedException();
+            }
+
+            @Override
+            public @Nullable Item remove(@NonNull String itemName, boolean recursive) {
+                throw new NotImplementedException();
+            }
+
+            @Override
+            public void addRegistryHook(RegistryHook<Item> hook) {
+                throw new NotImplementedException();
+            }
+
+            @Override
+            public void removeRegistryHook(RegistryHook<Item> hook) {
                 throw new NotImplementedException();
             }
         });

@@ -10,11 +10,11 @@ package org.openhab.persistence.dynamodb.internal;
 
 import java.util.Date;
 
+import org.eclipse.smarthome.core.library.items.LocationItem;
+import org.eclipse.smarthome.core.library.types.DecimalType;
+import org.eclipse.smarthome.core.library.types.PointType;
+import org.eclipse.smarthome.core.types.State;
 import org.junit.BeforeClass;
-import org.openhab.core.library.items.LocationItem;
-import org.openhab.core.library.types.DecimalType;
-import org.openhab.core.library.types.PointType;
-import org.openhab.core.types.State;
 
 /**
  *

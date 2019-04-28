@@ -10,14 +10,14 @@ package org.openhab.persistence.dynamodb.internal;
 
 import java.util.Date;
 
+import org.eclipse.smarthome.core.library.items.ContactItem;
+import org.eclipse.smarthome.core.library.types.OnOffType;
+import org.eclipse.smarthome.core.library.types.OpenClosedType;
+import org.eclipse.smarthome.core.types.State;
 import org.junit.BeforeClass;
-import org.openhab.core.library.items.ContactItem;
-import org.openhab.core.library.types.OnOffType;
-import org.openhab.core.library.types.OpenClosedType;
-import org.openhab.core.types.State;
 
 /**
- * 
+ *
  * @author Sami Salonen
  *
  */

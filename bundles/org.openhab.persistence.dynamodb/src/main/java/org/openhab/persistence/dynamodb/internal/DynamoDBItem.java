@@ -10,7 +10,7 @@ package org.openhab.persistence.dynamodb.internal;
 
 import java.util.Date;
 
-import org.openhab.core.items.Item;
+import org.eclipse.smarthome.core.items.Item;
 import org.openhab.core.persistence.HistoricItem;
 
 /**
